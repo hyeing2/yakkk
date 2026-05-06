@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* ==========================================
+   1. DESIGN TOKENS (디자인 시스템 변수 정의)
+   ========================================== */
+:root {
+    /* Font Weights (피그마 폰트 굵기 매칭) */
+    --font-light: 300;
+    --font-regular: 400;
+    --font-bold: 700;
+
+    /* Base Body Typography (기본 본문 설정) */
+    --body-font-size: 16px;
+    --body-line-height: 1.6;
+}
+
+/* ==========================================
+   2. BASE TEXT STYLES (본문 <p> 태그 및 전역 설정)
+   ========================================== */
+p {
+    margin: 0;
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
+    font-weight: var(--font-regular); /* 기본값은 Regular */
+}
+
+/* 본문 굵기 제어를 위한 유틸리티 클래스 */
+.txt-light {
+    font-weight: var(--font-light) !important;
+}
+.txt-regular {
+    font-weight: var(--font-regular) !important;
+}
+.txt-bold {
+    font-weight: var(--font-bold) !important;
+}
+
+/* ==========================================
+   3. HEADINGS: DESKTOP (기본 PC 사이즈)
+   ========================================== */
+h2, h3, h4 {
+    margin: 0; /* reset.css 미적용 대비 여백 초기화 */
+}
+
+/* 대제목 */
+.title-lg {
+    font-size: 48px;
+    line-height: 1.2; /* 120% */
+}
+
+/* 중제목 */
+.title-md {
+    font-size: 36px;
+    line-height: 1.2; /* 120% */
+}
+
+/* 소제목 */
+.title-sm {
+    font-size: 24px;
+    line-height: 1.3; /* 130% */
+}
+
+/* ==========================================
+   4. RESPONSIVE: MOBILE (모바일 화면 - 480px 이하)
+   ========================================== */
+@media (max-width: 480px) {
+    .title-lg {
+        font-size: 30px;
+        /* line-height는 상속되므로 변하지 않는다면 생략하여 코드 다이어트 */
+    }
+
+    .title-md {
+        font-size: 26px;
+    }
+
+    .title-sm {
+        font-size: 20px;
+    }
+}
