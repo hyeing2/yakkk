@@ -1,79 +1,465 @@
 @charset "UTF-8";
+@import url(fonts.css);
+/* Pretendard 폰트 CDN */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
-/* ==========================================
-   1. DESIGN TOKENS (디자인 시스템 변수 정의)
-   ========================================== */
+/*
+ * SB Aggro 로컬 폰트 연결 안내
+ * 아래 주석을 해제하고 폰트 파일 경로를 맞게 수정하여 사용하세요.
+ *
+ * @font-face {
+ *   font-family: 'SB AggroOTF';
+ *   src: url('../fonts/SBAggroOTF-B.otf') format('opentype');
+ *   font-weight: 700;
+ *   font-style: normal;
+ * }
+ * @font-face {
+ *   font-family: 'SB AggroOTF';
+ *   src: url('../fonts/SBAggroOTF-M.otf') format('opentype');
+ *   font-weight: 500;
+ *   font-style: normal;
+ * }
+ * @font-face {
+ *   font-family: 'SB AggroOTF';
+ *   src: url('../fonts/SBAggroOTF-L.otf') format('opentype');
+ *   font-weight: 300;
+ *   font-style: normal;
+ * }
+ */
+
+
+/* ===================================================
+   DESIGN TOKENS — CSS Custom Properties
+   =================================================== */
 :root {
-    /* Font Weights (피그마 폰트 굵기 매칭) */
-    --font-light: 300;
-    --font-regular: 400;
-    --font-bold: 700;
 
-    /* Base Body Typography (기본 본문 설정) */
-    --body-font-size: 16px;
-    --body-line-height: 1.6;
+  /* === COLOR SYSTEM === */
+  --color-main:   #FF4500;
+  --color-point:  #1A1A6E;
+  --color-sub1:   #FEF5E4;
+  --color-sub2:   #FFE7CB;
+  --color-sub3:   #FFCB8E;
+  --color-black:  #333333;
+  --color-white:  #ffffff;
+
+  /* === TYPOGRAPHY — FONT FAMILY === */
+  --font-primary: 'Pretendard', sans-serif;
+  --font-display: 'SB AggroOTF', 'SB Aggro', sans-serif;
+
+  /* === TYPOGRAPHY — FONT SIZE (clamp 반응형) === */
+  --font-point: clamp(80px, 13vw, 250px);   /* 배경 장식용 */
+  --font-h1:    clamp(36px, 4.2vw, 80px);
+  --font-h2:    clamp(24px, 2.5vw, 48px);
+  --font-h3:    clamp(20px, 1.7vw, 32px);
+  --font-h4:    clamp(18px, 1.25vw, 24px);
+  --font-h5:    clamp(16px, 1.05vw, 20px);
+  --font-p:     clamp(14px, 0.85vw, 16px);
+  --font-h6:    clamp(12px, 0.75vw, 14px);
+
+  /* === TYPOGRAPHY — FONT WEIGHT === */
+  --weight-regular:   400;  /* r  */
+  --weight-medium:    500;  /* m  */
+  --weight-semibold:  600;  /* sb */
+  --weight-bold:      700;  /* b  */
+
+  /* === SPACING (GAP) === */
+  --gap-xs: 6px;
+  --gap-sm: 12px;
+  --gap-md: 24px;
+  --gap-lg: clamp(24px, 2.2vw, 42px);
+  --gap-xl: clamp(60px, 7.8vw, 150px);
+
+  /* === GRID SYSTEM === */
+  --grid-display:       1920px;
+  --grid-max-width:     1620px;
+  --grid-columns:       12;
+  --grid-column-width:  113px;
+  --grid-gutter:        24px;
 }
 
-/* ==========================================
-   2. BASE TEXT STYLES (본문 <p> 태그 및 전역 설정)
-   ========================================== */
+
+/* ===================================================
+   RESET & BASE
+   =================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-p);
+  font-weight: var(--weight-regular);
+  color: var(--color-black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 모든 요소 margin/padding 초기화 */
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, li,
+figure, figcaption,
+blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* ===================================================
+   TYPOGRAPHY — BASE HEADING & PARAGRAPH STYLES
+   =================================================== */
+
+h1 {
+  font-size: var(--font-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  font-family: var(--font-primary);
+}
+
+h2 {
+  font-size: var(--font-h2);
+  font-weight: var(--weight-bold);
+  line-height: 1.25;
+  font-family: var(--font-primary);
+}
+
+h3 {
+  font-size: var(--font-h3);
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+  font-family: var(--font-primary);
+}
+
+h4 {
+  font-size: var(--font-h4);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+  font-family: var(--font-primary);
+}
+
+h5 {
+  font-size: var(--font-h5);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  font-family: var(--font-primary);
+}
+
+h6 {
+  font-size: var(--font-h6);
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
+  font-family: var(--font-primary);
+}
+
 p {
-    margin: 0;
-    font-size: var(--body-font-size);
-    line-height: var(--body-line-height);
-    font-weight: var(--font-regular); /* 기본값은 Regular */
+  font-size: var(--font-p);
+  font-weight: var(--weight-regular);
+  line-height: 1.6;
 }
 
-/* 본문 굵기 제어를 위한 유틸리티 클래스 */
-.txt-light {
-    font-weight: var(--font-light) !important;
-}
-.txt-regular {
-    font-weight: var(--font-regular) !important;
-}
-.txt-bold {
-    font-weight: var(--font-bold) !important;
-}
-
-/* ==========================================
-   3. HEADINGS: DESKTOP (기본 PC 사이즈)
-   ========================================== */
-h2, h3, h4 {
-    margin: 0; /* reset.css 미적용 대비 여백 초기화 */
+/* 모바일(768px 이하) — clamp 최솟값 고정 */
+@media (max-width: 768px) {
+  :root {
+    --font-point: 80px;
+    --font-h1:    36px;
+    --font-h2:    24px;
+    --font-h3:    20px;
+    --font-h4:    18px;
+    --font-h5:    16px;
+    --font-p:     14px;
+    --font-h6:    12px;
+  }
 }
 
-/* 대제목 */
-.title-lg {
-    font-size: 48px;
-    line-height: 1.2; /* 120% */
+
+/* ===================================================
+   TYPOGRAPHY — UTILITY CLASSES
+   =================================================== */
+
+/* 폰트 패밀리 */
+.font-display  { font-family: var(--font-display) !important; }
+.font-primary  { font-family: var(--font-primary) !important; }
+
+/* 폰트 웨이트 */
+.fw-regular   { font-weight: var(--weight-regular)  !important; }
+.fw-medium    { font-weight: var(--weight-medium)   !important; }
+.fw-semibold  { font-weight: var(--weight-semibold) !important; }
+.fw-bold      { font-weight: var(--weight-bold)     !important; }
+
+/* 배경 장식용 포인트 텍스트 */
+.font-point {
+  font-size:   var(--font-point);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: 1;
 }
 
-/* 중제목 */
-.title-md {
-    font-size: 36px;
-    line-height: 1.2; /* 120% */
+
+/* ===================================================
+   COLOR SYSTEM — UTILITY CLASSES
+   =================================================== */
+
+/* Text colors */
+.text-main   { color: var(--color-main)  !important; }
+.text-point  { color: var(--color-point) !important; }
+.text-sub1   { color: var(--color-sub1)  !important; }
+.text-sub2   { color: var(--color-sub2)  !important; }
+.text-sub3   { color: var(--color-sub3)  !important; }
+.text-black  { color: var(--color-black) !important; }
+.text-white  { color: var(--color-white) !important; }
+
+/* Background colors */
+.bg-main   { background-color: var(--color-main)  !important; }
+.bg-point  { background-color: var(--color-point) !important; }
+.bg-sub1   { background-color: var(--color-sub1)  !important; }
+.bg-sub2   { background-color: var(--color-sub2)  !important; }
+.bg-sub3   { background-color: var(--color-sub3)  !important; }
+.bg-black  { background-color: var(--color-black) !important; }
+.bg-white  { background-color: var(--color-white) !important; }
+
+
+/* ===================================================
+   SPACING — UTILITY CLASSES
+   =================================================== */
+
+/* gap */
+.gap-xs { gap: var(--gap-xs) !important; }
+.gap-sm { gap: var(--gap-sm) !important; }
+.gap-md { gap: var(--gap-md) !important; }
+.gap-lg { gap: var(--gap-lg) !important; }
+.gap-xl { gap: var(--gap-xl) !important; }
+
+/* margin-top */
+.mt-xs { margin-top: var(--gap-xs) !important; }
+.mt-sm { margin-top: var(--gap-sm) !important; }
+.mt-md { margin-top: var(--gap-md) !important; }
+.mt-lg { margin-top: var(--gap-lg) !important; }
+.mt-xl { margin-top: var(--gap-xl) !important; }
+
+/* margin-bottom */
+.mb-xs { margin-bottom: var(--gap-xs) !important; }
+.mb-sm { margin-bottom: var(--gap-sm) !important; }
+.mb-md { margin-bottom: var(--gap-md) !important; }
+.mb-lg { margin-bottom: var(--gap-lg) !important; }
+.mb-xl { margin-bottom: var(--gap-xl) !important; }
+
+/* padding-top */
+.pt-xs { padding-top: var(--gap-xs) !important; }
+.pt-sm { padding-top: var(--gap-sm) !important; }
+.pt-md { padding-top: var(--gap-md) !important; }
+.pt-lg { padding-top: var(--gap-lg) !important; }
+.pt-xl { padding-top: var(--gap-xl) !important; }
+
+/* padding-bottom */
+.pb-xs { padding-bottom: var(--gap-xs) !important; }
+.pb-sm { padding-bottom: var(--gap-sm) !important; }
+.pb-md { padding-bottom: var(--gap-md) !important; }
+.pb-lg { padding-bottom: var(--gap-lg) !important; }
+.pb-xl { padding-bottom: var(--gap-xl) !important; }
+
+
+/* ===================================================
+   GRID SYSTEM
+   =================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--grid-max-width);
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--grid-gutter);
+  padding-left: var(--grid-gutter);
 }
 
-/* 소제목 */
-.title-sm {
-    font-size: 24px;
-    line-height: 1.3; /* 130% */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gutter);
 }
 
-/* ==========================================
-   4. RESPONSIVE: MOBILE (모바일 화면 - 480px 이하)
-   ========================================== */
-@media (max-width: 480px) {
-    .title-lg {
-        font-size: 30px;
-        /* line-height는 상속되므로 변하지 않는다면 생략하여 코드 다이어트 */
-    }
+/* 컬럼 span 클래스 */
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
 
-    .title-md {
-        font-size: 26px;
-    }
+/* Laptop — 1440px */
+@media (max-width: 1440px) {
+  .container {
+    padding-right: var(--grid-gutter);
+    padding-left: var(--grid-gutter);
+  }
+}
 
-    .title-sm {
-        font-size: 20px;
-    }
+/* Tablet — 1024px : 8컬럼 기준 */
+@media (max-width: 1024px) {
+  .container {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  /* 8컬럼 초과 span은 전체 너비로 fallback */
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    grid-column: span 8;
+  }
+}
+
+/* Mobile — 768px 이하 : 4컬럼 기준 */
+@media (max-width: 768px) {
+  .container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* 4컬럼 초과 span은 전체 너비로 fallback */
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    grid-column: span 4;
+  }
+}
+
+
+/* ===================================================
+   INPUT FIELDS
+   =================================================== */
+
+.input-field {
+  display: block;
+  width: 100%;
+  font-family: var(--font-primary);
+  font-size: var(--font-p);
+  font-weight: var(--weight-regular);
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border: 1px solid rgba(51, 51, 51, 0.3);
+  border-radius: 6px;
+  padding: 12px 16px;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-field::placeholder {
+  color: rgba(51, 51, 51, 0.4);
+}
+
+.input-field:focus {
+  border-color: var(--color-main);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.12);
+}
+
+.input-field:disabled {
+  background-color: var(--color-sub1);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* ===================================================
+   MISC UTILITY CLASSES
+   =================================================== */
+
+/* 스크린리더 전용 숨김 */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 텍스트 정렬 */
+.text-center { text-align: center !important; }
+.text-left   { text-align: left   !important; }
+.text-right  { text-align: right  !important; }
+
+/* Flexbox */
+.flex         { display: flex !important; }
+.flex-center  { display: flex !important; align-items: center !important; justify-content: center !important; }
+.flex-between { display: flex !important; align-items: center !important; justify-content: space-between !important; }
+.flex-column  { display: flex !important; flex-direction: column !important; }
+
+/* 크기 */
+.w-full { width: 100%  !important; }
+.h-full { height: 100% !important; }
+
+/* 기타 */
+.overflow-hidden { overflow: hidden  !important; }
+.pointer         { cursor: pointer   !important; }
+
+/* 섹션 기본 여백 */
+.section {
+  padding-top:    var(--gap-xl);
+  padding-bottom: var(--gap-xl);
 }
