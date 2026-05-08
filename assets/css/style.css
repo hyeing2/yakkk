@@ -12,8 +12,10 @@
     --color-black: #333333;
 
     /* Typography */
-    --ff-point: 'SBAggroB', sans-serif; /* SB 어그로 볼드 */
-    --fs-nav: 1.25rem; /* 20px */
+    --ff-point: 'SBAggroB', sans-serif;
+    /* SB 어그로 볼드 */
+    --fs-nav: 1.25rem;
+    /* 20px */
 }
 
 /* -----------------------------------------------------------
@@ -21,8 +23,10 @@
 ----------------------------------------------------------- */
 .header {
     width: 100%;
-    height: 5rem; /* 80px */
-    background-color: transparent; /* KV 배경색에 따라 조절 (이미지상으로는 투명 혹은 오렌지) */
+    height: 5rem;
+    /* 80px */
+    background-color: transparent;
+    /* KV 배경색에 따라 조절 (이미지상으로는 투명 혹은 오렌지) */
     display: flex;
     align-items: center;
     position: fixed;
@@ -33,12 +37,15 @@
 }
 
 .nav-container {
-    width: 101.25rem; /* 1620px (Grid Size) */
+    width: 101.25rem;
+    /* 1620px (Grid Size) */
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* 로고와 유틸리티를 양 끝으로 */
+    justify-content: space-between;
+    /* 로고와 유틸리티를 양 끝으로 */
     align-items: center;
-    position: relative; /* GNB 중앙 정렬의 기준 */
+    position: relative;
+    /* GNB 중앙 정렬의 기준 */
 }
 
 /* -----------------------------------------------------------
@@ -54,7 +61,8 @@
 }
 
 .logo img {
-    height: 1.875rem; /* 로고 높이는 이미지 비율에 맞춰 조정 (약 30px) */
+    height: 1.875rem;
+    /* 로고 높이는 이미지 비율에 맞춰 조정 (약 30px) */
     display: block;
 }
 
@@ -63,22 +71,27 @@
 ----------------------------------------------------------- */
 .gnb {
     display: flex;
-    gap: 3.75rem; /* GNB 아이템 간격 (임의 설정, 디자인에 따라 조정 가능) */
+    gap: 3.75rem;
+    /* GNB 아이템 간격 (임의 설정, 디자인에 따라 조정 가능) */
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* 정확히 화면 중앙에 위치 */
+    transform: translateX(-50%);
+    /* 정확히 화면 중앙에 위치 */
 }
 
 .gnb li a {
     font-family: var(--ff-point);
     font-weight: 700;
-    font-size: var(--fs-nav); /* 20px */
-    color: var(--color-white); /* KV 배경이 오렌지이므로 화이트 적용 */
+    font-size: var(--fs-nav);
+    /* 20px */
+    color: var(--color-white);
+    /* KV 배경이 오렌지이므로 화이트 적용 */
     transition: color 0.3s ease;
 }
 
 .gnb li a:hover {
-    color: var(--color-point); /* 호버 시 포인트 컬러로 변경 */
+    color: var(--color-point);
+    /* 호버 시 포인트 컬러로 변경 */
 }
 
 /* -----------------------------------------------------------
@@ -87,13 +100,15 @@
 .header-util {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* KR버튼과 가맹문의 사이 간격: 24px */
+    gap: 1.5rem;
+    /* KR버튼과 가맹문의 사이 간격: 24px */
 }
 
 .lang-btn {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* KR과 아이콘 사이 간격: 12px (12/16=0.75rem) */
+    gap: 0.75rem;
+    /* KR과 아이콘 사이 간격: 12px (12/16=0.75rem) */
     background: none;
     border: none;
     cursor: pointer;
@@ -102,15 +117,20 @@
 }
 
 .lang-btn h5 {
-    font-family: var(--ff-point); /* SB 어그로 */
+    font-family: var(--ff-point);
+    /* SB 어그로 */
     font-weight: 700;
-    font-size: 1.25rem; /* 20px */
-    margin: 0; /* 태그 기본 마진 제거 */
-    line-height: 1; /* 아이콘과 수평 정렬을 위해 조정 */
+    font-size: 1.25rem;
+    /* 20px */
+    margin: 0;
+    /* 태그 기본 마진 제거 */
+    line-height: 1;
+    /* 아이콘과 수평 정렬을 위해 조정 */
 }
 
 .lang-btn img {
-    width: 0.75rem; /* 아이콘 크기는 svg 파일에 맞게 자동 조절되나 명시 가능 */
+    width: 0.75rem;
+    /* 아이콘 크기는 svg 파일에 맞게 자동 조절되나 명시 가능 */
     height: auto;
     display: block;
 }
@@ -119,10 +139,13 @@
 .cta-btn {
     font-family: var(--ff-point);
     font-weight: 700;
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
+    /* 20px */
     color: var(--color-white);
-    background-color: var(--color-point); /* #1A1A6E */
-    padding: 0.625rem 1.5rem; /* 10px 24px */
+    background-color: var(--color-point);
+    /* #1A1A6E */
+    padding: 0.625rem 1.5rem;
+    /* 10px 24px */
     border-radius: 2rem;
     transition: all 0.3s ease;
     line-height: 1;
@@ -133,40 +156,99 @@
     transform: translateY(-2px);
 }
 
-/* 여기서부터 재검사 필요 */
+
 /* -----------------------------------------------------------
    KV SECTION - 중심부 설계
 ----------------------------------------------------------- */
 .kv {
     width: 100%;
-    height: 100vh; /* 화면 전체 높이 점유 */
-    background-color: var(--color-main); /* 메인 컬러 (#FF4500) */
+    height: 100vh;
+    background-color: var(--color-main); /* 메인 컬러 */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
-    padding-top: 5rem; /* 헤더 높이(80px)만큼 컨텐츠 밀어내기 */
+    padding-top: 5rem; /* 헤더 높이 대응 */
 }
 
 .kv-wrapper {
-    width: 100%;
-    max-width: 101.25rem; /* 1620px 그리드 가이드 준수 */
+    width: 101.25rem; /* 1620px 그리드 가이드 */
     height: 100%;
+    position: relative; /* 사이드 접시의 absolute 배치 기준 */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 중앙 정렬 및 비율 유지를 위한 컨테이너 */
-.kv-main-visual {
-    position: relative;
+/* 사이드 접시 래퍼 (접시 + 디저트를 함께 묶음) */
+.side-dish-wrap {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24.1875rem; /* 387px — 접시 너비 */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 노트북에서도 요소가 잘리지 않게 크기 제한 */
-    max-width: 90%; 
-    max-height: 80%;
+    z-index: 1;
+}
+
+.side-dish-wrap.l-dish { left: 0; }
+.side-dish-wrap.r-dish { right: 0; }
+
+/* 접시 이미지 */
+.side-dish {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+}
+
+/* 디저트 슬라이더 — 접시 위에 절대 배치, 접시 기준 중앙 정렬 */
+.dessert-slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 12.875rem;  /* 206px */
+    height: 12.625rem; /* 202px */
+}
+
+/* 디저트 이미지 공통 */
+.dessert-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12.875rem;  /* 206px */
+    height: 12.625rem; /* 202px */
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+}
+
+/* top-bcc 만 사이즈 다르게 */
+.dessert-img[alt="BCC"] {
+    width: 14.6875rem; /* 235px */
+    height: 13.1875rem; /* 211px */
+}
+
+/* 활성 디저트 */
+.dessert-img.active {
+    opacity: 1;
+}
+
+/* 중앙 메인 비주얼 */
+.kv-main-visual {
+    position: relative;
+    z-index: 10; /* 사이드 접시보다 위로 오게 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dish-container {
@@ -176,46 +258,34 @@
     align-items: center;
 }
 
-/* 메인 접시: 618px -> 38.625rem */
 .m-dish {
-    width: 38.625rem;
-    height: 38.625rem;
-    object-fit: contain;
-    z-index: 1;
+    width: 38.625rem; /* 618px */
+    height: auto;
+    transition: transform 0.6s ease;
 }
 
-/* 메인 로고: 812x196px -> 50.75x12.25rem */
 .kv-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50.75rem;
-    height: 12.25rem;
-    object-fit: contain;
-    z-index: 2; /* 접시 위로 */
+    width: 50.75rem;  /* 812px */
+    height: 12.25rem; /* 196px */
+    object-fit: fill;
 }
 
 /* -----------------------------------------------------------
-   RESPONSIVE - 노트북 및 태블릿 대응 (추천 방안)
+   반응형 scale 최적화
 ----------------------------------------------------------- */
-@media (max-width: 1600px) {
-    /* 화면이 작아지면 폰트 사이즈(rem)의 기준인 html font-size를 조절하거나, 
-       요소의 scale을 조절하여 전체가 보이게 합니다. */
-    .kv-main-visual {
-        transform: scale(0.8); /* 요소를 80% 크기로 축소하여 풀 사이즈 유지 */
+@media (max-width: 1620px) {
+    /* 그리드 폭보다 화면이 작아지면 전체를 축소시켜 한눈에 보이게 함 */
+    .kv-wrapper {
+        transform: scale(0.9);
     }
 }
 
-@media (max-width: 1024px) {
-    .kv-main-visual {
-        transform: scale(0.6); /* 태블릿 대응 */
-    }
-}
-
-@media (max-height: 800px) {
-    /* 세로 높이가 낮은 노트북을 위한 대응 */
-    .kv-main-visual {
-        transform: scale(0.7);
+@media (max-width: 1400px) {
+    .kv-wrapper {
+        transform: scale(0.75);
     }
 }
