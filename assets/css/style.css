@@ -297,13 +297,15 @@
 .brand-story {
     width: 100%;
     background-color: var(--color-sub1); /* #FEF5E4 */
-    padding: 7.5rem 0; /* 120px 상하 여백 */
+    padding: 9.375rem 0 7.5rem; /* 상단 150px, 하단 120px */
+    overflow: hidden;
+    position: relative;
 }
 
-/* 2컬럼 레이아웃 */
+/* 2컬럼 레이아웃 — 상단 정렬 */
 .brand-story__inner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--grid-gutter);
 }
 
@@ -312,12 +314,15 @@
     flex: 0 0 calc((113px * 6) + (24px * 5)); /* 6컬럼 너비 */
     display: flex;
     flex-direction: column;
+    padding-top: 2rem; /* 텍스트 상단 여백 미세 조정 */
 }
 
-/* 오른쪽 비주얼 영역 — 나머지 */
+/* 오른쪽 비주얼 영역 — 나머지, 오른쪽 정렬 */
 .story-visual-wrap {
     flex: 1;
-    min-height: 28rem; /* 마스코트 이미지 자리 확보 */
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* -----------------------------------------------------------
@@ -402,4 +407,179 @@
 /* 호버 시 아이콘도 화이트로 반전 */
 .btn-story:hover img {
     filter: brightness(0) invert(1);
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 배경 장식 텍스트
+----------------------------------------------------------- */
+.story-bg-text {
+    position: absolute;
+    top: 50%;
+    right: -2rem;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 15.625rem; /* 250px */
+    color: var(--color-point);
+    opacity: 0.06;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    line-height: 1;
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 마스코트 콘텐츠 래퍼
+----------------------------------------------------------- */
+.mascot-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 2.8125rem; /* 45px — 박스 간 간격 */
+}
+
+/* VS 텍스트 */
+.mascot-vs {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 5rem; /* 80px */
+    color: var(--color-main);
+    line-height: 1;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 4rem; /* 체크리스트 높이만큼 올려 캐릭터 중앙에 배치 */
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 캐릭터 컬럼 (세로: 피겨 위 / 체크리스트 아래)
+----------------------------------------------------------- */
+.mascot-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 피겨 (이미지 + 이름 가로 배치)
+----------------------------------------------------------- */
+
+/* YAKI 피겨: 이미지(왼쪽) + 이름(오른쪽, 이미지 상단 정렬) */
+.mascot-figure--yaki {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* 이미지 상단 기준 정렬 */
+    gap: 0;
+}
+
+/* KIKI 피겨: 이름(왼쪽, 이미지 하단 정렬) + 이미지(오른쪽) */
+.mascot-figure--kiki {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end; /* 이미지 하단 기준 정렬 */
+    gap: 0;
+}
+
+/* YAKI 이미지 */
+.mascot-img--yaki {
+    width: 15.625rem;  /* 250px */
+    height: 26rem;     /* 416px */
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* KIKI 이미지 */
+.mascot-img--kiki {
+    width: 18.375rem;  /* 294px */
+    height: 26rem;     /* 416px */
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 캐릭터 이름 (EN 위 / KO 아래, 간격 0)
+----------------------------------------------------------- */
+.mascot-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+}
+
+.mascot-name .name-en {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold); /* SB 어그로 B */
+    font-size: 1.25rem;              /* 20px */
+    line-height: 1.2;
+    text-align: center;
+}
+
+.mascot-name .name-ko {
+    font-family: var(--font-display);
+    font-weight: 300;                /* SB 어그로 L */
+    font-size: 1.25rem;              /* 20px */
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* YAKI 이름 — 메인 컬러(주황) */
+.mascot-name--yaki {
+    color: var(--color-main);
+}
+
+/* KIKI 이름 — 포인트 컬러(네이비) */
+.mascot-name--kiki {
+    color: var(--color-point);
+}
+
+/* -----------------------------------------------------------
+   BRAND STORY — 체크리스트
+----------------------------------------------------------- */
+.mascot-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* 12px */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+/* YAKI 체크리스트 — 이미지 기준 왼쪽 하단 (왼쪽 정렬) */
+.mascot-checklist--yaki {
+    align-self: flex-start;
+}
+
+/* KIKI 체크리스트 — 이미지 기준 오른쪽 하단 (오른쪽 정렬) */
+.mascot-checklist--kiki {
+    align-self: flex-end;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px */
+    font-family: var(--font-primary);
+    font-weight: var(--weight-regular);
+    font-size: 1rem; /* 16px */
+    color: var(--color-black);
+    white-space: nowrap;
+}
+
+.checklist-item img {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* YAKI 체크 아이콘 — 메인(주황) */
+.check-icon--yaki {
+    filter: invert(40%) sepia(90%) saturate(700%) hue-rotate(0deg) brightness(110%);
+}
+
+/* KIKI 체크 아이콘 — 포인트(네이비) */
+.check-icon--kiki {
+    filter: invert(10%) sepia(80%) saturate(800%) hue-rotate(210deg) brightness(60%);
 }
