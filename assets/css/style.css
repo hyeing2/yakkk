@@ -289,3 +289,117 @@
         transform: scale(0.75);
     }
 }
+
+
+/* -----------------------------------------------------------
+   BRAND STORY SECTION
+----------------------------------------------------------- */
+.brand-story {
+    width: 100%;
+    background-color: var(--color-sub1); /* #FEF5E4 */
+    padding: 7.5rem 0; /* 120px 상하 여백 */
+}
+
+/* 2컬럼 레이아웃 */
+.brand-story__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--grid-gutter);
+}
+
+/* 왼쪽 텍스트 영역 — 6컬럼 */
+.story-text-wrap {
+    flex: 0 0 calc((113px * 6) + (24px * 5)); /* 6컬럼 너비 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 오른쪽 비주얼 영역 — 나머지 */
+.story-visual-wrap {
+    flex: 1;
+    min-height: 28rem; /* 마스코트 이미지 자리 확보 */
+}
+
+/* -----------------------------------------------------------
+   그룹 1: 메인 타이틀
+----------------------------------------------------------- */
+.story-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* 12px */
+}
+
+/* 소제목 — Pretendard SemiBold 20px */
+.story-eyebrow {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-semibold);
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-point);
+    line-height: 1.4;
+}
+
+/* 메인 헤드라인 — SB 어그로 Bold 48px */
+.story-headline {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    font-size: 3rem; /* 48px */
+    color: var(--color-point);
+    line-height: 1.25;
+}
+
+/* -----------------------------------------------------------
+   그룹 1 → 그룹 2 간격: 48px
+----------------------------------------------------------- */
+.story-desc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* 12px */
+    margin-top: 3rem; /* 48px */
+}
+
+/* 서브 설명 — Pretendard Regular 20px */
+.story-desc {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-regular);
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-black);
+    line-height: 1.5;
+}
+
+/* -----------------------------------------------------------
+   그룹 2 → 그룹 3 간격: 48px
+----------------------------------------------------------- */
+.story-btn-group {
+    margin-top: 3rem; /* 48px */
+}
+
+/* 스토리 버튼 */
+.btn-story {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px — 텍스트와 아이콘 사이 */
+    font-family: var(--font-primary);
+    font-weight: var(--weight-regular);
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-point);
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    border: 1px solid var(--color-point);
+    border-radius: 3.125rem; /* 50px */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-story img {
+    width: 1.25rem;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.btn-story:hover {
+    background-color: var(--color-point);
+    color: var(--color-white);
+}
+
+/* 호버 시 아이콘도 화이트로 반전 */
+.btn-story:hover img {
+    filter: brightness(0) invert(1);
+}
