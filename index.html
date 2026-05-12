@@ -29,13 +29,15 @@
                 <li><a href="#">소식</a></li>
                 <li><a href="#">ESG</a></li>
                 <li><a href="#">고객의 소리</a></li>
+                <li class="gnb-cta"><a href="#" class="cta-btn cta-btn--mobile">가맹문의</a></li>
             </ul>
 
             <div class="header-util">
-                <button type="button" class="lang-btn">
-                    <h5>KR</h5> <img src="assets/images/icon/lang-arrow.svg" alt="언어">
+                <a href="#" class="cta-btn cta-btn--desktop">가맹문의</a>
+                <!-- 모바일 햄버거 버튼 -->
+                <button type="button" class="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+                    <img src="assets/images/icon/hamburger.svg" alt="메뉴" class="hamburger-icon">
                 </button>
-                <a href="#" class="cta-btn">가맹문의</a>
             </div>
         </nav>
     </header>
@@ -82,6 +84,26 @@
 </main>
 
     <script src="assets/js/kv.js"></script>
+    <script>
+        // 햄버거 메뉴 토글
+        const hamburger = document.querySelector('.hamburger');
+        const gnb = document.querySelector('.gnb');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = gnb.classList.toggle('is-open');
+            hamburger.classList.toggle('is-active', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // 메뉴 링크 클릭 시 닫기
+        gnb.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                gnb.classList.remove('is-open');
+                hamburger.classList.remove('is-active');
+                hamburger.setAttribute('aria-expanded', false);
+            });
+        });
+    </script>
 
     <!-- 브랜드 스토리 섹션 -->
     <section class="brand-story">

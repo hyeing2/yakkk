@@ -1,192 +1,156 @@
 @import url(common.css);
 
 /* -----------------------------------------------------------
-   1. VARIABLES (스타일 가이드 기반)
+   1. VARIABLES
 ----------------------------------------------------------- */
 :root {
-    /* Colors */
-    --color-main: #FF4500;
+    --color-main:  #FF4500;
     --color-point: #1A1A6E;
-    --color-sub1: #FEF5E4;
+    --color-sub1:  #FEF5E4;
     --color-white: #ffffff;
     --color-black: #333333;
 
-    /* Typography */
     --ff-point: 'SBAggroB', sans-serif;
-    /* SB 어그로 볼드 */
-    --fs-nav: 1.25rem;
-    /* 20px */
+    --fs-nav:   1.25rem; /* 20px */
+
+    --header-h: 5rem; /* 80px */
 }
 
 /* -----------------------------------------------------------
-   2. HEADER LAYOUT (1920x80px)
+   2. HEADER
 ----------------------------------------------------------- */
 .header {
     width: 100%;
-    height: 5rem;
-    /* 80px */
-    background-color: transparent;
-    /* KV 배경색에 따라 조절 (이미지상으로는 투명 혹은 오렌지) */
+    height: var(--header-h);
+    background-color: var(--color-main);
     display: flex;
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: var(--color-main);
 }
 
 .nav-container {
-    width: 101.25rem;
-    /* 1620px (Grid Size) */
+    width: min(101.25rem, 100%);
+    padding: 0 1.5rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    /* 로고와 유틸리티를 양 끝으로 */
     align-items: center;
     position: relative;
-    /* GNB 중앙 정렬의 기준 */
 }
 
 /* -----------------------------------------------------------
    3. LOGO
 ----------------------------------------------------------- */
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo a {
-    display: block;
-}
-
+.logo a { display: block; }
 .logo img {
     height: 1.875rem;
-    /* 로고 높이는 이미지 비율에 맞춰 조정 (약 30px) */
     display: block;
 }
 
 /* -----------------------------------------------------------
-   4. GNB (중앙 정렬)
+   4. GNB
 ----------------------------------------------------------- */
 .gnb {
     display: flex;
     gap: 3.75rem;
-    /* GNB 아이템 간격 (임의 설정, 디자인에 따라 조정 가능) */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    /* 정확히 화면 중앙에 위치 */
 }
 
 .gnb li a {
     font-family: var(--ff-point);
     font-weight: 700;
     font-size: var(--fs-nav);
-    /* 20px */
     color: var(--color-white);
-    /* KV 배경이 오렌지이므로 화이트 적용 */
     transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
-.gnb li a:hover {
-    color: var(--color-point);
-    /* 호버 시 포인트 컬러로 변경 */
-}
+.gnb li a:hover { color: var(--color-point); }
 
 /* -----------------------------------------------------------
-   5. HEADER UTIL (Language & CTA)
+   5. HEADER UTIL
 ----------------------------------------------------------- */
 .header-util {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    /* KR버튼과 가맹문의 사이 간격: 24px */
+    gap: 1rem;
 }
 
-.lang-btn {
-    display: flex;
+.cta-btn {
+    font-family: var(--ff-point);
+    font-weight: 700;
+    font-size: var(--fs-nav);
+    color: var(--color-white);
+    background-color: var(--color-point);
+    padding: 0.625rem 1.5rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.cta-btn:hover {
+    background-color: var(--color-white);
+    color: var(--color-point);
+}
+
+/* 햄버거 버튼 — 데스크탑에서 숨김 */
+.hamburger {
+    display: none;
     align-items: center;
-    gap: 0.75rem;
-    /* KR과 아이콘 사이 간격: 12px (12/16=0.75rem) */
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    color: var(--color-white);
 }
 
-.lang-btn h5 {
-    font-family: var(--ff-point);
-    /* SB 어그로 */
-    font-weight: 700;
-    font-size: 1.25rem;
-    /* 20px */
-    margin: 0;
-    /* 태그 기본 마진 제거 */
-    line-height: 1;
-    /* 아이콘과 수평 정렬을 위해 조정 */
-}
-
-.lang-btn img {
-    width: 0.75rem;
-    /* 아이콘 크기는 svg 파일에 맞게 자동 조절되나 명시 가능 */
-    height: auto;
+.hamburger-icon {
+    width: 100%;
+    height: 100%;
     display: block;
 }
 
-/* 가맹문의 버튼 (CTA) */
-.cta-btn {
-    font-family: var(--ff-point);
-    font-weight: 700;
-    font-size: 1.25rem;
-    /* 20px */
-    color: var(--color-white);
-    background-color: var(--color-point);
-    /* #1A1A6E */
-    padding: 0.625rem 1.5rem;
-    /* 10px 24px */
-    border-radius: 2rem;
-    transition: all 0.3s ease;
-    line-height: 1;
-}
-
-.cta-btn:hover {
-    background-color: var(--color-main);
-    transform: translateY(-2px);
-}
-
+/* 모바일에서 가맹문의 GNB 항목 숨김 (데스크탑에선 별도 버튼 사용) */
+.gnb-cta { display: none; }
 
 /* -----------------------------------------------------------
-   KV SECTION - 중심부 설계
+   KV SECTION
 ----------------------------------------------------------- */
 .kv {
     width: 100%;
     height: 100vh;
-    background-color: var(--color-main); /* 메인 컬러 */
+    background-color: var(--color-main);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
-    padding-top: 5rem; /* 헤더 높이 대응 */
+    padding-top: var(--header-h);
 }
 
 .kv-wrapper {
-    width: 101.25rem; /* 1620px 그리드 가이드 */
+    width: 101.25rem;
     height: 100%;
-    position: relative; /* 사이드 접시의 absolute 배치 기준 */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 사이드 접시 래퍼 (접시 + 디저트를 함께 묶음) */
+/* 사이드 접시 래퍼 */
 .side-dish-wrap {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24.1875rem; /* 387px — 접시 너비 */
+    width: 24.1875rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,7 +160,6 @@
 .side-dish-wrap.l-dish { left: 0; }
 .side-dish-wrap.r-dish { right: 0; }
 
-/* 접시 이미지 */
 .side-dish {
     width: 100%;
     height: auto;
@@ -206,46 +169,41 @@
     z-index: 1;
 }
 
-/* 디저트 슬라이더 — 접시 위에 절대 배치, 접시 기준 중앙 정렬 */
+/* 디저트 슬라이더 */
 .dessert-slider {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 12.875rem;  /* 206px */
-    height: 12.625rem; /* 202px */
+    width: 12.875rem;
+    height: 12.625rem;
 }
 
-/* 디저트 이미지 공통 */
 .dessert-img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12.875rem;  /* 206px */
-    height: 12.625rem; /* 202px */
+    width: 12.875rem;
+    height: 12.625rem;
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.8s ease;
     pointer-events: none;
 }
 
-/* top-bcc 만 사이즈 다르게 */
 .dessert-img[alt="BCC"] {
-    width: 14.6875rem; /* 235px */
-    height: 13.1875rem; /* 211px */
+    width: 14.6875rem;
+    height: 13.1875rem;
 }
 
-/* 활성 디저트 */
-.dessert-img.active {
-    opacity: 1;
-}
+.dessert-img.active { opacity: 1; }
 
 /* 중앙 메인 비주얼 */
 .kv-main-visual {
     position: relative;
-    z-index: 10; /* 사이드 접시보다 위로 오게 설정 */
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -259,7 +217,7 @@
 }
 
 .m-dish {
-    width: 38.625rem; /* 618px */
+    width: 38.625rem;
     height: auto;
     transition: transform 0.6s ease;
 }
@@ -269,55 +227,35 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50.75rem;  /* 812px */
-    height: 12.25rem; /* 196px */
+    width: 50.75rem;
+    height: 12.25rem;
     object-fit: fill;
 }
-
-/* -----------------------------------------------------------
-   반응형 scale 최적화
------------------------------------------------------------ */
-@media (max-width: 1620px) {
-    /* 그리드 폭보다 화면이 작아지면 전체를 축소시켜 한눈에 보이게 함 */
-    .kv-wrapper {
-        transform: scale(0.9);
-    }
-}
-
-@media (max-width: 1400px) {
-    .kv-wrapper {
-        transform: scale(0.75);
-    }
-}
-
 
 /* -----------------------------------------------------------
    BRAND STORY SECTION
 ----------------------------------------------------------- */
 .brand-story {
     width: 100%;
-    background-color: var(--color-sub1); /* #FEF5E4 */
-    padding: 9.375rem 0 7.5rem; /* 상단 150px, 하단 120px */
+    background-color: var(--color-sub1);
+    padding: 9.375rem 0 7.5rem;
     overflow: hidden;
     position: relative;
 }
 
-/* 2컬럼 레이아웃 — 상단 정렬 */
 .brand-story__inner {
     display: flex;
     align-items: flex-start;
-    gap: var(--grid-gutter);
+    gap: var(--grid-gutter, 1.5rem);
 }
 
-/* 왼쪽 텍스트 영역 — 6컬럼 */
 .story-text-wrap {
-    flex: 0 0 calc((113px * 6) + (24px * 5)); /* 6컬럼 너비 */
+    flex: 0 0 calc((113px * 6) + (24px * 5));
     display: flex;
     flex-direction: column;
-    padding-top: 2rem; /* 텍스트 상단 여백 미세 조정 */
+    padding-top: 2rem;
 }
 
-/* 오른쪽 비주얼 영역 — 나머지, 오른쪽 정렬 */
 .story-visual-wrap {
     flex: 1;
     position: relative;
@@ -325,71 +263,59 @@
     justify-content: flex-end;
 }
 
-/* -----------------------------------------------------------
-   그룹 1: 메인 타이틀
------------------------------------------------------------ */
+/* 그룹 1 */
 .story-title-group {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* 12px */
+    gap: 0.75rem;
 }
 
-/* 소제목 — Pretendard SemiBold 20px */
 .story-eyebrow {
     font-family: var(--font-primary);
     font-weight: var(--weight-semibold);
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     color: var(--color-point);
     line-height: 1.4;
 }
 
-/* 메인 헤드라인 — SB 어그로 Bold 48px */
 .story-headline {
     font-family: var(--font-display);
     font-weight: var(--weight-bold);
-    font-size: 3rem; /* 48px */
+    font-size: 3rem;
     color: var(--color-point);
     line-height: 1.25;
 }
 
-/* -----------------------------------------------------------
-   그룹 1 → 그룹 2 간격: 48px
------------------------------------------------------------ */
+/* 그룹 2 */
 .story-desc-group {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* 12px */
-    margin-top: 3rem; /* 48px */
+    gap: 0.75rem;
+    margin-top: 3rem;
 }
 
-/* 서브 설명 — Pretendard Regular 20px */
 .story-desc {
     font-family: var(--font-primary);
     font-weight: var(--weight-regular);
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     color: var(--color-black);
     line-height: 1.5;
 }
 
-/* -----------------------------------------------------------
-   그룹 2 → 그룹 3 간격: 48px
------------------------------------------------------------ */
-.story-btn-group {
-    margin-top: 3rem; /* 48px */
-}
+/* 그룹 3 */
+.story-btn-group { margin-top: 3rem; }
 
-/* 스토리 버튼 */
 .btn-story {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem; /* 12px — 텍스트와 아이콘 사이 */
+    gap: 0.75rem;
     font-family: var(--font-primary);
     font-weight: var(--weight-regular);
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     color: var(--color-point);
-    padding: 0.75rem 1.5rem; /* 12px 24px */
+    padding: 0.75rem 1.5rem;
     border: 1px solid var(--color-point);
-    border-radius: 3.125rem; /* 50px */
+    border-radius: 3.125rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -404,14 +330,9 @@
     color: var(--color-white);
 }
 
-/* 호버 시 아이콘도 화이트로 반전 */
-.btn-story:hover img {
-    filter: brightness(0) invert(1);
-}
+.btn-story:hover img { filter: brightness(0) invert(1); }
 
-/* -----------------------------------------------------------
-   BRAND STORY — 배경 장식 텍스트
------------------------------------------------------------ */
+/* 배경 장식 텍스트 */
 .story-bg-text {
     position: absolute;
     top: 50%;
@@ -419,7 +340,7 @@
     transform: translateY(-50%);
     font-family: var(--font-display);
     font-weight: var(--weight-bold);
-    font-size: 15.625rem; /* 250px */
+    font-size: 15.625rem;
     color: var(--color-point);
     opacity: 0.06;
     white-space: nowrap;
@@ -429,78 +350,63 @@
     line-height: 1;
 }
 
-/* -----------------------------------------------------------
-   BRAND STORY — 마스코트 콘텐츠 래퍼
------------------------------------------------------------ */
+/* 마스코트 래퍼 */
 .mascot-wrap {
     position: relative;
     z-index: 1;
     display: flex;
     align-items: flex-end;
-    gap: 2.8125rem; /* 45px — 박스 간 간격 */
+    gap: 2.8125rem;
 }
 
-/* VS 텍스트 */
 .mascot-vs {
     font-family: var(--font-display);
     font-weight: var(--weight-bold);
-    font-size: 5rem; /* 80px */
+    font-size: 5rem;
     color: var(--color-main);
     line-height: 1;
     flex-shrink: 0;
     align-self: center;
-    margin-bottom: 4rem; /* 체크리스트 높이만큼 올려 캐릭터 중앙에 배치 */
+    margin-bottom: 4rem;
 }
 
-/* -----------------------------------------------------------
-   BRAND STORY — 캐릭터 컬럼 (세로: 피겨 위 / 체크리스트 아래)
------------------------------------------------------------ */
 .mascot-col {
     display: flex;
     flex-direction: column;
 }
 
-/* -----------------------------------------------------------
-   BRAND STORY — 피겨 (이미지 + 이름 가로 배치)
------------------------------------------------------------ */
-
-/* YAKI 피겨: 이미지(왼쪽) + 이름(오른쪽, 이미지 상단 정렬) */
+/* YAKI 피겨 */
 .mascot-figure--yaki {
     display: flex;
     flex-direction: row;
-    align-items: flex-start; /* 이미지 상단 기준 정렬 */
+    align-items: flex-start;
     gap: 0;
 }
 
-/* KIKI 피겨: 이름(왼쪽, 이미지 하단 정렬) + 이미지(오른쪽) */
+/* KIKI 피겨 */
 .mascot-figure--kiki {
     display: flex;
     flex-direction: row;
-    align-items: flex-end; /* 이미지 하단 기준 정렬 */
+    align-items: flex-end;
     gap: 0;
 }
 
-/* YAKI 이미지 */
 .mascot-img--yaki {
-    width: 15.625rem;  /* 250px */
-    height: 26rem;     /* 416px */
+    width: 15.625rem;
+    height: 26rem;
     object-fit: contain;
     display: block;
     flex-shrink: 0;
 }
 
-/* KIKI 이미지 */
 .mascot-img--kiki {
-    width: 18.375rem;  /* 294px */
-    height: 26rem;     /* 416px */
+    width: 18.375rem;
+    height: 26rem;
     object-fit: contain;
     display: block;
     flex-shrink: 0;
 }
 
-/* -----------------------------------------------------------
-   BRAND STORY — 캐릭터 이름 (EN 위 / KO 아래, 간격 0)
------------------------------------------------------------ */
 .mascot-name {
     display: flex;
     flex-direction: column;
@@ -510,76 +416,244 @@
 
 .mascot-name .name-en {
     font-family: var(--font-display);
-    font-weight: var(--weight-bold); /* SB 어그로 B */
-    font-size: 1.25rem;              /* 20px */
+    font-weight: var(--weight-bold);
+    font-size: 1.25rem;
     line-height: 1.2;
     text-align: center;
 }
 
 .mascot-name .name-ko {
     font-family: var(--font-display);
-    font-weight: 300;                /* SB 어그로 L */
-    font-size: 1.25rem;              /* 20px */
+    font-weight: 300;
+    font-size: 1.25rem;
     line-height: 1.2;
     text-align: center;
 }
 
-/* YAKI 이름 — 메인 컬러(주황) */
-.mascot-name--yaki {
-    color: var(--color-main);
-}
+.mascot-name--yaki { color: var(--color-main); }
+.mascot-name--kiki { color: var(--color-point); }
 
-/* KIKI 이름 — 포인트 컬러(네이비) */
-.mascot-name--kiki {
-    color: var(--color-point);
-}
-
-/* -----------------------------------------------------------
-   BRAND STORY — 체크리스트
------------------------------------------------------------ */
 .mascot-checklist {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* 12px */
+    gap: 0.75rem;
     list-style: none;
     padding: 0;
     margin: 0;
     margin-top: 1rem;
 }
 
-/* YAKI 체크리스트 — 이미지 기준 왼쪽 하단 (왼쪽 정렬) */
-.mascot-checklist--yaki {
-    align-self: flex-start;
-}
-
-/* KIKI 체크리스트 — 이미지 기준 오른쪽 하단 (오른쪽 정렬) */
-.mascot-checklist--kiki {
-    align-self: flex-end;
-}
+.mascot-checklist--yaki { align-self: flex-start; }
+.mascot-checklist--kiki { align-self: flex-end; }
 
 .checklist-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* 12px */
+    gap: 0.75rem;
     font-family: var(--font-primary);
     font-weight: var(--weight-regular);
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     color: var(--color-black);
     white-space: nowrap;
 }
 
 .checklist-item img {
-    width: 1.25rem; /* 20px */
+    width: 1.25rem;
     height: 1.25rem;
     flex-shrink: 0;
 }
 
-/* YAKI 체크 아이콘 — 메인(주황) */
 .check-icon--yaki {
     filter: invert(40%) sepia(90%) saturate(700%) hue-rotate(0deg) brightness(110%);
 }
 
-/* KIKI 체크 아이콘 — 포인트(네이비) */
 .check-icon--kiki {
     filter: invert(10%) sepia(80%) saturate(800%) hue-rotate(210deg) brightness(60%);
+}
+
+
+/* ============================================================
+   RESPONSIVE — Tablet 1024px
+============================================================ */
+@media (max-width: 1024px) {
+
+    /* KV — scale 축소 */
+    .kv-wrapper { transform: scale(0.65); transform-origin: center center; }
+
+    /* Brand Story — 세로 스택 */
+    .brand-story { padding: 6rem 0 5rem; }
+
+    .brand-story__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3rem;
+    }
+
+    .story-text-wrap {
+        flex: none;
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .story-visual-wrap {
+        justify-content: center;
+    }
+
+    .story-headline { font-size: 2.25rem; }
+
+    .story-bg-text { font-size: 10rem; right: -1rem; }
+
+    /* 마스코트 — 간격 축소 */
+    .mascot-wrap { gap: 1.5rem; }
+    .mascot-vs   { font-size: 3.5rem; margin-bottom: 3rem; }
+
+    .mascot-img--yaki { width: 11rem; height: 18rem; }
+    .mascot-img--kiki { width: 13rem; height: 18rem; }
+}
+
+
+/* ============================================================
+   RESPONSIVE — Mobile 768px
+============================================================ */
+@media (max-width: 768px) {
+
+    /* Header */
+    .gnb {
+        /* 모바일 드롭다운 메뉴 */
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background-color: var(--color-main);
+        transform: none;
+        padding: 1rem 0 1.5rem;
+        /* 기본 숨김 */
+        display: none;
+    }
+
+    .gnb.is-open { display: flex; }
+
+    .gnb li a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .cta-btn--desktop { display: none; }  /* 데스크탑 가맹문의 버튼 숨김 */
+    .gnb-cta          { display: list-item; } /* GNB 내 가맹문의 표시 */
+
+    .gnb-cta .cta-btn--mobile {
+        display: inline-block;
+        margin: 0.5rem 1.5rem 0;
+        font-size: 1rem;
+        padding: 0.625rem 1.25rem;
+    }
+
+    .hamburger { display: flex; }
+
+    /* KV */
+    .kv { height: auto; min-height: 100svh; padding: 6rem 1rem 3rem; }
+
+    .kv-wrapper {
+        width: 100%;
+        transform: none;
+        flex-direction: column;
+        gap: 1.5rem;
+        height: auto;
+    }
+
+    /* 사이드 접시 — absolute 해제, 가로 나열 */
+    .side-dish-wrap {
+        position: static;
+        transform: none;
+        width: 10rem;
+        flex-shrink: 0;
+    }
+
+    .kv-main-visual { order: -1; width: 100%; }
+
+    .dish-container { width: 100%; }
+
+    .m-dish  { width: 100%; max-width: 18rem; }
+    .kv-logo { width: 90%; height: auto; }
+
+    .dessert-slider {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .dessert-img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .dessert-img[alt="BCC"] {
+        width: 7rem;
+        height: 6.5rem;
+    }
+
+    /* Brand Story */
+    .brand-story { padding: 4rem 0 3rem; }
+
+    .story-eyebrow  { font-size: 0.875rem; }
+    .story-headline { font-size: 1.75rem; }
+    .story-desc     { font-size: 1rem; }
+
+    .story-desc-group { margin-top: 1.5rem; }
+    .story-btn-group  { margin-top: 1.5rem; }
+
+    .btn-story { font-size: 1rem; padding: 0.625rem 1.25rem; }
+
+    .story-bg-text { font-size: 5rem; opacity: 0.04; }
+
+    /* 마스코트 — 세로 스택 */
+    .mascot-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .mascot-vs {
+        font-size: 3rem;
+        margin-bottom: 0;
+        order: 2; /* YAKI 아래, KIKI 위 */
+    }
+
+    .mascot-col { width: 100%; align-items: center; }
+
+    .mascot-yaki { order: 1; }
+    .mascot-kiki { order: 3; }
+
+    .mascot-figure--yaki,
+    .mascot-figure--kiki {
+        justify-content: center;
+    }
+
+    .mascot-img--yaki { width: 9rem;  height: 14rem; }
+    .mascot-img--kiki { width: 10rem; height: 14rem; }
+
+    .mascot-checklist--yaki,
+    .mascot-checklist--kiki {
+        align-self: center;
+    }
+
+    .checklist-item { font-size: 0.875rem; }
+}
+
+
+/* ============================================================
+   RESPONSIVE — Small Mobile 480px
+============================================================ */
+@media (max-width: 480px) {
+
+    .story-headline { font-size: 1.5rem; }
+
+    .mascot-wrap { gap: 1rem; }
+
+    .mascot-img--yaki { width: 7.5rem; height: 12rem; }
+    .mascot-img--kiki { width: 8.5rem; height: 12rem; }
+
+    .mascot-vs { font-size: 2.5rem; }
 }
